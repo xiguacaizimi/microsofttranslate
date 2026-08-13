@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 · 页面未找到</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ===== 全局重置 & 基础 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #e8f4fd 0%, #f0e8ff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .not-found-container {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 48px 44px 40px;
+            box-shadow: 0 30px 60px rgba(0, 60, 120, 0.15),
+                0 8px 24px rgba(0, 60, 120, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== 错误图标 ===== */
+        .error-icon {
+            font-size: 80px;
+            color: #0078d4;
+            background: rgba(0, 120, 212, 0.10);
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .error-icon i {
+            transform: scale(1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* ===== 标题 ===== */
+        .error-title {
+            font-size: 72px;
+            font-weight: 800;
+            color: #1a1a2e;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .error-title span {
+            color: #0078d4;
+        }
+
+        .error-subtitle {
+            font-size: 22px;
+            font-weight: 600;
+            color: #2d2d4a;
+            margin: 8px 0 16px 0;
+        }
+
+        /* ===== 微软式中文幽默描述 ===== */
+        .error-description {
+            font-size: 15px;
+            color: #5a5a7a;
+            line-height: 1.9;
+            max-width: 460px;
+            margin: 0 auto 28px;
+            padding: 16px 20px;
+            background: rgba(0, 120, 212, 0.04);
+            border-radius: 16px;
+            border-left: 3px solid #0078d4;
+            text-align: left;
+        }
+
+        .error-description i {
+            color: #0078d4;
+            margin-right: 4px;
+        }
+
+        .error-description .highlight-ms {
+            display: inline-block;
+            background: rgba(0, 120, 212, 0.10);
+            padding: 0 6px;
+            border-radius: 4px;
+            color: #005a9e;
+            font-weight: 500;
+        }
+
+        /* ===== 按钮 ===== */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            background: #f0f0f5;
+            color: #1a1a2e;
+        }
+
+        .btn i {
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: #0078d4;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(0, 120, 212, 0.30);
+        }
+
+        .btn-primary:hover {
+            background: #005a9e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 120, 212, 0.35);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0px);
+            box-shadow: 0 2px 8px rgba(0, 120, 212, 0.25);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid rgba(0, 0, 0, 0.12);
+            color: #2d2d4a;
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 0, 0, 0.04);
+            border-color: #0078d4;
+            transform: translateY(-3px);
+        }
+
+        /* ===== 额外幽默小字 ===== */
+        .error-footer {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 13px;
+            color: #9a9ab0;
+        }
+
+        .error-footer i {
+            color: #0078d4;
+            margin: 0 2px;
+        }
+
+        .error-footer .ms-joke {
+            display: inline-block;
+            background: rgba(0, 120, 212, 0.06);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #0078d4;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            .not-found-container {
+                padding: 32px 20px 28px;
+                border-radius: 28px;
+            }
+
+            .error-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 52px;
+            }
+
+            .error-title {
+                font-size: 48px;
+            }
+
+            .error-subtitle {
+                font-size: 18px;
+            }
+
+            .error-description {
+                font-size: 14px;
+                padding: 14px 16px;
+            }
+
+            .btn {
+                padding: 10px 24px;
+                font-size: 14px;
+                flex: 1 1 auto;
+                min-width: 120px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .not-found-container {
+                padding: 24px 14px 20px;
+                border-radius: 24px;
+            }
+
+            .error-title {
+                font-size: 38px;
+            }
+
+            .error-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="not-found-container">
+
+        <!-- ===== 图标 ===== -->
+        <div class="error-icon">
+            <i class="fas fa-compass"></i>
+        </div>
+
+        <!-- ===== 标题 ===== -->
+        <div class="error-title">
+            4<span>0</span>4
+        </div>
+        <div class="error-subtitle">
+            <i class="fas fa-map-pin" style="color:#0078d4;font-size:18px;"></i>
+            该页面已被“微软式”地迷失
+        </div>
+
+        <!-- ===== 微软式中文幽默描述 ===== -->
+        <div class="error-description">
+            <i class="fas fa-quote-left" style="opacity:0.5;"></i>
+            很抱歉，您所请求的页面<strong>当前处于不可用状态</strong>。
+            该资源可能已被<strong class="highlight-ms">进行移动</strong>、<strong class="highlight-ms">执行删除</strong>，
+            或您输入的 URL 存在<strong class="highlight-ms">格式异常</strong>。
+            <br /><br />
+            建议您<strong class="highlight-ms">将浏览器导航至</strong>首页，
+            或<strong class="highlight-ms">执行返回操作</strong>以继续您的旅程。
+            <i class="fas fa-quote-right" style="opacity:0.5;float:right;"></i>
+        </div>
+
+        <!-- ===== 按钮 ===== -->
+        <div class="btn-group">
+            <a href="#" class="btn btn-primary" onclick="window.history.back(); return false;">
+                <i class="fas fa-arrow-left"></i> 返回上一页
+            </a>
+            <a href="/" class="btn btn-outline">
+                <i class="fas fa-home"></i> 前往首页
+            </a>
+        </div>
+
+        <!-- ===== 页脚幽默小字 ===== -->
+        <div class="error-footer">
+            <i class="fas fa-robot"></i>
+            此错误信息已由 <strong>DeepSeek</strong> 以微软式中文风格进行本地化处理
+            <br />
+            <span class="ms-joke">
+                <i class="fas fa-laugh-squint"></i> 该页面可能正在执行“不存在”操作
+            </span>
+        </div>
+
+    </div>
+
+    <script>
+        // 控制台小彩蛋
+        console.log('%c🚀 404 页面已加载', 'font-size:18px; font-weight:bold; color:#0078d4;');
+        console.log('%c📌 该页面已被微软式中文风格本地化', 'font-size:14px; color:#5a5a7a;');
+        console.log('%c😄 您正在寻找的页面可能正在“进行消失”操作...', 'font-size:14px; color:#9a9ab0;');
+    </script>
+
+</body>
+</html>
